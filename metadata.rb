@@ -1,0 +1,5 @@
+name 'formatron_grafana'
+version '0.1.0'
+supports 'ubuntu'
+depends 'apt'
+depends 'database'
