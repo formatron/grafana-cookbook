@@ -24,7 +24,6 @@ node.override['formatron_graphite']['root_lastname'] = 'dude'
 node.override['formatron_graphite']['root_password'] = 'password'
 node.override['formatron_graphite']['root_email'] = 'me@mydomain.com'
 include_recipe 'formatron_graphite::default'
-apache_site 'graphite'
 
 node.override['formatron_grafana']['admin']['user'] = 'root'
 node.override['formatron_grafana']['admin']['password'] = 'password'

@@ -1,3 +1,4 @@
+default['formatron_grafana']['hostname'] = node['fqdn']
 default['formatron_grafana']['admin']['user'] = 'admin'
 default['formatron_grafana']['admin']['password'] = 'changeme'
 default['formatron_grafana']['postgresql']['user'] = 'postgres'
