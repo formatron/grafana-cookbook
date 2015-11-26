@@ -13,6 +13,12 @@ ldap_search_base = node['formatron_grafana']['ldap_search_base']
 ldap_bind_dn = node['formatron_grafana']['ldap_bind_dn']
 ldap_bind_password = node['formatron_grafana']['ldap_bind_password']
 ldap_uid = node['formatron_grafana']['ldap_uid']
+ldap_first_name_attr = node['formatron_grafana']['ldap_first_name_attr']
+ldap_last_name_attr = node['formatron_grafana']['ldap_last_name_attr']
+ldap_member_of_attr = node['formatron_grafana']['ldap_member_of_attr']
+ldap_email_attr = node['formatron_grafana']['ldap_email_attr']
+ldap_admin_group_dn = node['formatron_grafana']['ldap_admin_group_dn']
+ldap_editor_group_dn = node['formatron_grafana']['ldap_editor_group_dn']
 
 include_recipe 'database::postgresql'
 
@@ -59,7 +65,13 @@ unless ldap_server.nil?
       ldap_search_base: ldap_search_base,
       ldap_bind_dn: ldap_bind_dn,
       ldap_bind_password: ldap_bind_password,
-      ldap_uid: ldap_uid
+      ldap_uid: ldap_uid,
+      ldap_first_name_attr: ldap_first_name_attr,
+      ldap_last_name_attr: ldap_last_name_attr,
+      ldap_member_of_attr: ldap_member_of_attr,
+      ldap_email_attr: ldap_email_attr,
+      ldap_admin_group_dn: ldap_admin_group_dn,
+      ldap_editor_group_dn: ldap_editor_group_dn
     )
   end
 end

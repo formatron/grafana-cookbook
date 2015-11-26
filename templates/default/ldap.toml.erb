@@ -35,21 +35,21 @@ search_base_dns = ["<%= @ldap_search_base %>"]
 
 # Specify names of the ldap attributes your ldap uses
 [servers.attributes]
-name = "givenName"
-surname = "sn"
-username = "cn"
-member_of = "memberOf"
-email =  "email"
+name = "<%= @ldap_first_name_attr %>"
+surname = "<%= @ldap_last_name_attr %>"
+username = "<%= @ldap_uid %>"
+member_of = "<%= @ldap_member_of_attr %>"
+email =  "<%= @ldap_email_attr %>"
 
 # Map ldap groups to grafana org roles
 [[servers.group_mappings]]
-group_dn = "cn=admins,dc=grafana,dc=org"
+group_dn = "<%= @ldap_admin_group_dn || '*' %>"
 org_role = "Admin"
 # The Grafana organization database id, optional, if left out the default org (id 1) will be used
 # org_id = 1
 
 [[servers.group_mappings]]
-group_dn = "cn=users,dc=grafana,dc=org"
+group_dn = "<%= @ldap_editor_group_dn || '*' %>"
 org_role = "Editor"
 
 [[servers.group_mappings]]
