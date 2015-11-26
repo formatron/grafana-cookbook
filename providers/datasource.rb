@@ -39,6 +39,9 @@ action :create do
     new_resource.updated_by_last_action true
   else
     datasource = datasources[datasource_index]
+    log 'update_datasource' do
+      message "#{datasource['name']} - #{datasource['id']}"
+    end
     new_datasource = datasource.clone
     new_datasource['type'] = type
     new_datasource['url'] = url
