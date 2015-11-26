@@ -1,4 +1,3 @@
-hostname = node['formatron_grafana']['hostname']
 admin_user = node['formatron_grafana']['admin']['user']
 admin_password = node['formatron_grafana']['admin']['password']
 postgres_user = node['formatron_grafana']['postgresql']['user']
@@ -78,10 +77,6 @@ template '/etc/grafana/grafana.ini' do
     password: database_password
   )
   notifies :restart, 'service[grafana-server]', :delayed
-end
-
-formatron_apache_proxy hostname do
-  proxy_pass "http://localhost:3000/"
 end
 
 service 'grafana-server' do
