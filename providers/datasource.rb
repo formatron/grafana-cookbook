@@ -39,7 +39,6 @@ action :create do
     new_resource.updated_by_last_action true
   else
     datasource = datasources[datasource_index]
-    fail "#{datasource['name']} - #{datasource['id']}"
     new_datasource = datasource.clone
     new_datasource['type'] = type
     new_datasource['url'] = url
@@ -48,7 +47,7 @@ action :create do
     new_datasource['basicAuthUser'] = basic_auth_user unless basic_auth_user.nil?
     new_datasource['basicAuthPassword'] = basic_auth_password unless basic_auth_password.nil?
     unless datasource == new_datasource
-      api.post(
+      api.put(
         "datasources/#{datasource['id']}",
         new_datasource
       )
