@@ -19,7 +19,6 @@ action :create do
   basic_auth_password = new_resource.password
   username = node['formatron_grafana']['admin']['user']
   password = node['formatron_grafana']['admin']['password']
-  Chef::Log.info "#{username} - #{password}"
   api = JSONHTTP.new "http://#{username}:#{password}@localhost:3000/api"
   datasources = api.get 'datasources'
   datasource_index = datasources.index { |entry| entry['name'].eql? name }
@@ -40,7 +39,7 @@ action :create do
     new_resource.updated_by_last_action true
   else
     datasource = datasources[datasource_index]
-    Chef::Log.info "#{datasource['name']} - #{datasource['id']}"
+    fail "#{datasource['name']} - #{datasource['id']}"
     new_datasource = datasource.clone
     new_datasource['type'] = type
     new_datasource['url'] = url
