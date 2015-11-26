@@ -36,3 +36,10 @@ node.override['formatron_grafana']['database']['name'] = 'grafana'
 node.override['formatron_grafana']['database']['user'] = 'grafana'
 node.override['formatron_grafana']['database']['password'] = 'grafanapassword'
 include_recipe 'formatron_grafana::default'
+
+formatron_grafana_datasource 'local_graphite' do
+  type 'graphite'
+  url 'http://localhost'
+  access 'proxy'
+  basic_auth false
+end
