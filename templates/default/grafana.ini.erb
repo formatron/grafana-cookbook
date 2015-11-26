@@ -177,21 +177,17 @@ allow_sign_up = false
 ;header_property = username
 ;auto_sign_up = true
 
-<% if @use_ldap %>
 #################################### Basic Auth ##########################
 [auth.basic]
-enabled = false
+;enabled = true
 
+<% if @use_ldap %>
 #################################### Auth LDAP ##########################
 [auth.ldap]
 enabled = true
 config_file = /etc/grafana/ldap.toml
 
 <% else %>
-#################################### Basic Auth ##########################
-[auth.basic]
-;enabled = true
-
 #################################### Auth LDAP ##########################
 [auth.ldap]
 ;enabled = false
