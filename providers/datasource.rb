@@ -15,19 +15,26 @@ action :create do
   url = new_resource.url
   access = new_resource.access
   basic_auth = new_resource.basic_auth
+  user = new_resource.user
+  password = new_resource.password
   username = node['formatron_grafana']['admin']['user']
   password = node['formatron_grafana']['admin']['password']
   api = JSONHTTP.new "http://#{username}:#{password}@localhost:3000/api"
   datasources = api.get 'datasources'
   datasource_index = datasources.index { |entry| entry['name'].eql? name }
   if datasource_index.nil?
-    api.post(
-      'datasources',
+    new_datasource = {
       name: name,
       type: type,
       url: url,
       access: access,
       basicAuth: basic_auth
+    }
+    new_datasource['basicAuthUser'] = user unless user.nil?
+    new_datasource['basicAuthPassword'] = password unless password.nil?
+    api.post(
+      'datasources',
+      new_datasource
     )
     new_resource.updated_by_last_action true
   else
