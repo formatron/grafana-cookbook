@@ -19,6 +19,9 @@ action :create do
   basic_auth_password = new_resource.password
   username = node['formatron_grafana']['admin']['user']
   password = node['formatron_grafana']['admin']['password']
+  log 'create_datasource' do
+    message "#{username} - #{password}"
+  end
   api = JSONHTTP.new "http://#{username}:#{password}@localhost:3000/api"
   datasources = api.get 'datasources'
   datasource_index = datasources.index { |entry| entry['name'].eql? name }
