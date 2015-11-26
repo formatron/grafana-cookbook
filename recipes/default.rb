@@ -81,7 +81,7 @@ template '/etc/grafana/grafana.ini' do
 end
 
 formatron_apache_proxy hostname do
-  proxypass "http://localhost:3000/"
+  proxy_pass "http://localhost:3000/"
 end
 
 service 'grafana-server' do
