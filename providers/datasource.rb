@@ -17,6 +17,7 @@ action :create do
   basic_auth = new_resource.basic_auth
   basic_auth_user = new_resource.user
   basic_auth_password = new_resource.password
+  database = new_resource.database
   username = node['formatron_grafana']['admin']['user']
   password = node['formatron_grafana']['admin']['password']
   api = JSONHTTP.new "http://#{username}:#{password}@localhost:3000/api"
@@ -32,6 +33,7 @@ action :create do
     }
     new_datasource['basicAuthUser'] = basic_auth_user unless basic_auth_user.nil?
     new_datasource['basicAuthPassword'] = basic_auth_password unless basic_auth_password.nil?
+    new_datasource['database'] = database unless database.nil?
     api.post(
       'datasources',
       new_datasource
@@ -46,6 +48,7 @@ action :create do
     new_datasource['basicAuth'] = basic_auth
     new_datasource['basicAuthUser'] = basic_auth_user unless basic_auth_user.nil?
     new_datasource['basicAuthPassword'] = basic_auth_password unless basic_auth_password.nil?
+    new_datasource['database'] = database unless database.nil?
     unless datasource == new_datasource
       api.put(
         "datasources/#{datasource['id']}",
