@@ -42,7 +42,7 @@ action :create do
     )
     new_resource.updated_by_last_action true
   else
-    datasource = api.get "datasources/#{datasource['id']}"
+    datasource = api.get "datasources/#{datasources[datasource_index]['id']}"
     new_datasource = datasource.clone
     new_datasource['type'] = type
     new_datasource['url'] = url
