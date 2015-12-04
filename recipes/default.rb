@@ -20,8 +20,6 @@ ldap_email_attr = node['formatron_grafana']['ldap_email_attr']
 ldap_admin_group_dn = node['formatron_grafana']['ldap_admin_group_dn']
 ldap_editor_group_dn = node['formatron_grafana']['ldap_editor_group_dn']
 
-include_recipe 'database::postgresql'
-
 postgresql_connection_info = {
   host: database_host,
   port: database_port,
@@ -29,22 +27,22 @@ postgresql_connection_info = {
   password: postgres_password
 }
 
-postgresql_connection_info_graphite = {
+postgresql_connection_info_grafana = {
   host: database_host,
   port: database_port,
   username: database_user,
   password: database_password
 }
 
-postgresql_database_user database_user do
+formatron_postgresql_user database_user do
   connection postgresql_connection_info
   password database_password
-  createdb true
+  create_db true
   action :create
 end
 
-postgresql_database database_name do
-  connection postgresql_connection_info_graphite
+formatron_postgresql_database database_name do
+  connection postgresql_connection_info_grafana
   action :create
 end
 
