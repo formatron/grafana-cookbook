@@ -89,6 +89,10 @@ template '/etc/grafana/grafana.ini' do
   notifies :restart, 'service[grafana-server]', :delayed
 end
 
+chef_gem 'activesupport' do
+  compile_time false
+end
+
 service 'grafana-server' do
   supports status: true, restart: true, reload: false
   action [ :enable, :start ]

@@ -43,3 +43,122 @@ formatron_grafana_datasource 'local_graphite' do
   access 'proxy'
   basic_auth false
 end
+
+formatron_grafana_dashboard 'just testing' do
+  model(
+    'tags' => [],
+    'style' => 'light',
+    'timezone' => 'browser',
+    'editable' => true,
+    'hideControls' => false,
+    'sharedCrosshair' => false,
+    'rows' => [
+      {
+        'collapse' => false,
+        'editable' => true,
+        'height' => '250px',
+        'panels' => [
+          {
+            'aliasColors' => {},
+            'bars' => false,
+            'datasource' => nil,
+            'editable' => true,
+            'error' => false,
+            'fill' => 1,
+            'grid' => {
+              'leftLogBase' => 1,
+              'leftMax' => nil,
+              'leftMin' => nil,
+              'rightLogBase' => 1,
+              'rightMax' => nil,
+              'rightMin' => nil,
+              'threshold1' => nil,
+              'threshold1Color' => 'rgba(216, 200, 27, 0.27)',
+              'threshold2' => nil,
+              'threshold2Color' => 'rgba(234, 112, 112, 0.22)'
+            },
+            'id' => 1,
+            'legend' => {
+              'avg' => false,
+              'current' => false,
+              'max' => false,
+              'min' => false,
+              'show' => true,
+              'total' => false,
+              'values' => false
+            },
+            'lines' => true,
+            'linewidth' => 2,
+            'links' => [],
+            'nilPointMode' => 'connected',
+            'percentage' => false,
+            'pointradius' => 5,
+            'points' => false,
+            'renderer' => 'flot',
+            'seriesOverrides' => [],
+            'span' => 12,
+            'stack' => false,
+            'steppedLine' => false,
+            'targets' => [
+              {
+                'refId' => 'A'
+              }
+            ],
+            'timeFrom' => nil,
+            'timeShift' => nil,
+            'title' => 'Test',
+            'tooltip' => {
+              'shared' => true,
+              'value_type' => 'cumulative'
+            },
+            'type' => 'graph',
+            'x-axis' => true,
+            'y-axis' => true,
+            'y_formats' => [
+              'short',
+              'short'
+            ]
+          }
+        ],
+        'title' => 'Row'
+      }
+    ],
+    'time' => {
+      'from' => 'now-6h',
+      'to' => 'now'
+    },
+    'timepicker' => {
+      'refresh_intervals' => [
+        '5s',
+        '10s',
+        '30s',
+        '1m',
+        '5m',
+        '15m',
+        '30m',
+        '1h',
+        '2h',
+        '1d'
+      ],
+      'time_options' => [
+        '5m',
+        '15m',
+        '1h',
+        '6h',
+        '12h',
+        '24h',
+        '2d',
+        '7d',
+        '30d'
+      ]
+    },
+    'templating' => {
+      'list' => []
+    },
+    'annotations' => {
+      'list' => []
+    },
+    'schemaVersion' => 7,
+    'links' => []
+    )
+end
