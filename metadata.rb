@@ -1,5 +1,8 @@
 name 'formatron_grafana'
 version '0.1.0'
+description 'Formatron Grafana cookbook'
+source_url 'https://github.com/formatron/grafana-cookbook'
+issues_url 'https://github.com/formatron/grafana-cookbook/issues'
 supports 'ubuntu'
 depends 'apt'
 depends 'formatron_postgresql'
